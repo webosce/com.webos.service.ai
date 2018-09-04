@@ -75,7 +75,7 @@ void lunaApiBase::LSMessageReplyErrorInvalidParams(LSHandle *sh, LSMessage *msg)
     LSError lserror;
     LSErrorInit(&lserror);
 
-    bool retVal = LSMessageReply(sh, msg, "{\"returnValue\":false,\"errorText\":\"Invalid parameters.\"}", NULL);
+    bool retVal = LSMessageReply(sh, msg, "{\"returnValue\":false,\"errorText\":\"Invalid parameters.\"}", &lserror);
     if (!retVal) {
         LSErrorPrint(&lserror, stderr);
         LSErrorFree(&lserror);
@@ -86,7 +86,7 @@ void lunaApiBase::LSMessageReplyErrorBadJSON(LSHandle *sh, LSMessage *msg) {
     LSError lserror;
     LSErrorInit(&lserror);
 
-    bool retVal = LSMessageReply(sh, msg, "{\"returnValue\":false,\"errorText\":\"Malformed json.\"}", NULL);
+    bool retVal = LSMessageReply(sh, msg, "{\"returnValue\":false,\"errorText\":\"Malformed json.\"}", &lserror);
     if (!retVal) {
         LSErrorPrint(&lserror, stderr);
         LSErrorFree(&lserror);
@@ -100,9 +100,9 @@ void lunaApiBase::LSMessageReplySuccess(LSHandle *sh, LSMessage *msg, char *payl
     bool retVal;
 
     if (payload == NULL) {
-        retVal = LSMessageReply(sh, msg, "{\"returnValue\":true}", NULL);
+        retVal = LSMessageReply(sh, msg, "{\"returnValue\":true}", &lserror);
     } else {
-        retVal = LSMessageReply(sh, msg, payload, NULL);
+        retVal = LSMessageReply(sh, msg, payload, &lserror);
     }
 
     if (!retVal) {
