@@ -21,7 +21,7 @@ $ luna-send -n 1 -f luna://com.webos.service.ai.voice/start '{"mode":"continuous
 
   Parameters
   * mode: 'continuous' or 'single'. Continuous menas the service will restart when recognition finished.
-  * keywordDetect: true' or false. For using keyword activation such as 'Ok,Google'
+  * keywordDetect: 'true' or 'false'. For using keyword activation such as 'Ok,Google'
 
 2. Stop
 $ luna-send -n 1 -f luna://com.webos.service.ai.voice/stop '{}'
